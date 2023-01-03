@@ -1,1 +1,50 @@
-<p>home works!</p>
+<div class="w-full h-screen flex flex-col justify-center items-center">
+  <div class="grid gap-3 bg-black px-8 py-4 rounded-lg">
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-2">
+        <label for="num1" class="text-white">Ingrese primer valor</label>
+        <input
+          type="number"
+          class="border p-1 px-2 rounded-md"
+          [(ngModel)]="num1"
+          name="num1"
+          id="num1"
+        />
+      </div>
+      <div class="flex items-center gap-2">
+        <label for="num2" class="text-white">Ingrese segundo valor</label>
+        <input
+          type="number"
+          class="border p-1 px-2 rounded-md"
+          [(ngModel)]="num2"
+          name="num2"
+          id="num2"
+        />
+      </div>
+    </div>
+    <div>
+      <select
+        class="border p-2 rounded-md"
+        name="selectOperacion"
+        id=""
+        [(ngModel)]="select"
+        required
+        (change)="onOperacion()"
+      >
+        <option value="">Elija una opción</option>
+        <option *ngFor="let oper of operaciones" value="{{ oper.simbolo }}">
+          {{ oper.texto }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <p *ngIf="!select" class="text-red-500">
+        <span class="text-white">Resultado:</span>
+        (No eligió operación)
+      </p>
+      <p *ngIf="select" class="{{ colorResultado }}">
+        Resultado: {{ resultado }}
+      </p>
+    </div>
+  </div>
+</div>
